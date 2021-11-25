@@ -35,12 +35,19 @@
       <SubType>Content</SubType>
       <DependentUpon>Dockerfile</DependentUpon>
     </Content>
+    <Content Include=".eslintrc.js" />
+    <Content Include=".prettierrc.json" />
+    <Content Include="index.html" />
+    <Content Include="src\pages\index.vue" />
+    <Content Include="src\pages\registration\index.vue" />
+    <Content Include="vite.config.js" />
     <None Include="Dockerfile" />
     <Content Include=".nginx\nginx.conf" />
     <Content Include="public\favicon.ico" />
-    <Content Include="public\index.html" />
     <Content Include="src\App.vue" />
     <Content Include="src\components\HelloWorld.vue" />
+    <Content Include="src\router\index.ts" />
+    <Content Include="src\shims-vue.d.ts" />
     <Content Include="tsconfig.json" />
     <Content Include="package.json" />
     <Content Include="README.md" />
