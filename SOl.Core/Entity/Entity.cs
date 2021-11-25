@@ -4,13 +4,13 @@ namespace SOL.Core.Entity
 {
     public abstract class Entity : IEntity
     {
-        public Guid Id { get; set; }
+        public string Id { get; set; }
         public DateTime Created { get; set; }
         public DateTime? Updated { get; set; }    
 
         protected Entity()
         {
-            Id = Guid.NewGuid();
+            Id = Convert.ToString(Guid.NewGuid());
         }
 
         public override bool Equals(object obj)
