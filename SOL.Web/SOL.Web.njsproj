@@ -40,7 +40,7 @@
     <Content Include="public\favicon.ico" />
     <Content Include="public\index.html" />
     <Content Include="src\App.vue" />
-    <Content Include="src\components\Home.vue" />
+    <Content Include="src\components\HelloWorld.vue" />
     <Content Include="tsconfig.json" />
     <Content Include="package.json" />
     <Content Include="README.md" />
@@ -55,8 +55,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="src\main.ts" />
-    <None Include="src\shims-vue.d.ts" />
-    <None Include="src\shims-tsx.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="babel.config.js" />

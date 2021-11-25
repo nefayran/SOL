@@ -1,20 +1,21 @@
-<template>
-    <div id="app">
-        <Home msg="Hello world!" />
-    </div>
-</template>
-
-<script lang="ts">
-    import { Component, Vue } from 'vue-property-decorator';
-    import Home from './components/Home.vue';
-
-    @Component({
-        components: {
-            Home
-        }
-    })
-    export default class App extends Vue { }
+<script setup>
+// This starter template is using Vue 3 <script setup> SFCs
+// Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
+import HelloWorld from './components/HelloWorld.vue'
 </script>
 
+<template>
+  <img alt="Vue logo" src="./assets/logo.png" />
+  <HelloWorld msg="Hello Vue 3 + Vite" />
+</template>
+
 <style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
 </style>
