@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DigestCreator.DigestCreator.Core.Entity
+namespace SOL.Core.Entity
 {
     public abstract class Entity : IEntity
     {

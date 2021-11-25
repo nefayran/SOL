@@ -1,7 +1,7 @@
-﻿using System;
-using DigestCreator.DigestCreator.Core.Entity;
+﻿using SOL.Core.Entity;
+using System;
 
-namespace DigestCreator.DigestCreator.Core.Interfaces
+namespace SOL.Core.Interfaces
 {
     public interface IRepository<in T> : IDisposable where T : IEntity
     {

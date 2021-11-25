@@ -3,7 +3,7 @@ using System.Linq;
 using FluentValidation;
 using FluentValidation.Results;
 
-namespace DigestCreator.DigestCreator.Core.Commands
+namespace SOL.Core.Commands
 {
     public abstract class CommandHandlerBase
     {
@@ -21,6 +21,6 @@ namespace DigestCreator.DigestCreator.Core.Commands
             return validationResult;
         }
 
-        public Result Return() => new Result (!Notifications.Any(), Notifications);
+        public Result Return(object data = null) => new(!Notifications.Any(), Notifications, data);
     }
 }

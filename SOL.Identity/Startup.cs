@@ -9,12 +9,13 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using SOL.Identity.SOL.Application.Entity;
-using SOL.Identity.SOL.Infrastructure.Data.Context;
-using System;
+using MediatR;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using SOL.Identity.SOL.Identity.Domain.Entities;
+using SOL.Identity.SOL.Identity.Infrastructure.Data.Context;
+using SOL.Identity.SOL.Identity.IoC;
 
 namespace SOL.Identity
 {
@@ -30,15 +31,13 @@ namespace SOL.Identity
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMediatR(typeof(Startup));
 
-            var connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
-
-            // добавление ApplicationDbContext для взаимодействия с базой данных учетных записей
-            services.AddDbContext<SOLIdentityDbContext>(options =>
-                options.UseNpgsql(connectionString));
+            services.AddDbContext(Configuration);
+            services.Register();
 
             services.AddIdentity<User, IdentityRole>()
-                .AddEntityFrameworkStores<SOLIdentityDbContext>();
+                .AddEntityFrameworkStores<IdentityContext>();
  
 
             services.AddControllers();

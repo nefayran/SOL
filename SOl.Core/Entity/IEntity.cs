@@ -1,9 +1,9 @@
 ﻿using System;
 
-namespace DigestCreator.DigestCreator.Core.Entity
+namespace SOL.Core.Entity
 {
     public interface IEntity
     {
-        public Guid Id { get; set; }
+        public string Id { get; set; }
     }
 }

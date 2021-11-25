@@ -1,7 +1,7 @@
 version: '3.4'
 
 networks:
-  identity:
+  sol:
     driver: bridge 
 
 services:
@@ -18,7 +18,7 @@ services:
     environment:
       DB_CONNECTION_STRING: "host=identity_db;port=5432;database=identity;username=postgress;password=postgress"
     networks:
-      - identity
+      - sol
 
   identity_db:
     image: postgres:latest
@@ -35,7 +35,19 @@ services:
       PGDATA: /data/postgres
       ALLOW_IP_RANGE: 0.0.0.0/0
     networks:
-      - identity
+      - sol
+
+  sol.web:
+    image: nginx:stable-alpine
+    container_name: sol_web
+    restart: always
+    build:
+      context: .
+      dockerfile: SOL.Web/Dockerfile
+    ports:
+      - "8080:80"
+    networks:
+      - sol
 
   pgadmin:
     image: dpage/pgadmin4
@@ -47,7 +59,7 @@ services:
     ports:
       - "5050:80"
     networks:
-      - identity
+      - sol
 
 volumes:
   db_volume:
