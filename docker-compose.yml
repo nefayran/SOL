@@ -17,6 +17,10 @@ services:
       - "8000:80"
     environment:
       DB_CONNECTION_STRING: "host=identity_db;port=5432;database=identity;username=postgress;password=postgress"
+      ASPNETCORE_ENVIRONMENT: Development
+    volumes: 
+      # for development
+      - $APPDATA/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
     networks:
       - sol
 

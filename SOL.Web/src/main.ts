@@ -9,14 +9,18 @@
  * destroyed -> onUnmounted
  * errorCaptured -> onErrorCaptured
  */
+import "reflect-metadata"; // try delete.
 import { createApp } from "vue";
 import App from "./App.vue";
+import { setup } from "./app/ioc/modules";
 
-import router from "./router"; // 路由
+import router from "./app/router";
 
 const app = createApp(App);
 
 app.use(router);
+
+setup();
 
 router.isReady().then(() => {
   app.mount("#app");

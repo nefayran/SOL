@@ -38,15 +38,44 @@
     <Content Include=".eslintrc.js" />
     <Content Include=".prettierrc.json" />
     <Content Include="index.html" />
-    <Content Include="src\pages\index.vue" />
-    <Content Include="src\pages\registration\index.vue" />
+    <Content Include="src\app\application\User\CreateUserCommandHandler.ts" />
+    <Content Include="src\app\core\api\ApiClient.ts" />
+    <Content Include="src\app\core\api\ApiError.ts" />
+    <Content Include="src\app\core\api\ApiRequest.ts" />
+    <Content Include="src\app\core\api\ApiResponse.ts" />
+    <Content Include="src\app\core\api\HttpMethod.ts" />
+    <Content Include="src\app\core\api\NetworkClient.ts" />
+    <Content Include="src\app\core\commands\ICommandBase.ts" />
+    <Content Include="src\app\core\commands\ICommandHandlerBase.ts" />
+    <Content Include="src\app\core\commands\Result.ts" />
+    <Content Include="src\app\core\repositories\IRepository.ts" />
+    <Content Include="src\app\domain\commands\User\CreateUserCommand.ts" />
+    <Content Include="src\app\domain\commands\User\UserCommandBase.ts" />
+    <Content Include="src\app\domain\commands\User\Validators\CreateUserCommandValidator.ts" />
+    <Content Include="src\app\domain\decorators\MathDecorator.ts" />
+    <Content Include="src\app\domain\entities\User.ts" />
+    <Content Include="src\app\domain\interfaces\repositories\IUserRepository.ts" />
+    <Content Include="src\app\infrastructure\api\User\User.ts" />
+    <Content Include="src\app\infrastructure\repositories\UserRepository.ts" />
+    <Content Include="src\app\infrastructure\requests\User\PushUserRequest.ts" />
+    <Content Include="src\app\ioc\modules.ts" />
+    <Content Include="src\assets\logo.png" />
+    <Content Include="src\view\components\HelloWorld.vue" />
+    <Content Include="src\view\containers\user\account\AccountContainer.vue" />
+    <Content Include="src\view\containers\user\login\LoginContainer.vue" />
+    <Content Include="src\view\containers\user\registration\RegistrationContainer.vue" />
+    <Content Include="src\view\pages\account\index.vue" />
+    <Content Include="src\view\pages\index.vue" />
+    <Content Include="src\view\pages\registration\index.vue" />
+    <Content Include="src\app\store\index.ts" />
+    <Content Include="src\app\store\modules\user\index.ts" />
+    <Content Include="src\app\store\modules\user\types.ts" />
     <Content Include="vite.config.js" />
     <None Include="Dockerfile" />
     <Content Include=".nginx\nginx.conf" />
     <Content Include="public\favicon.ico" />
     <Content Include="src\App.vue" />
-    <Content Include="src\components\HelloWorld.vue" />
-    <Content Include="src\router\index.ts" />
+    <Content Include="src\app\router\index.ts" />
     <Content Include="src\shims-vue.d.ts" />
     <Content Include="tsconfig.json" />
     <Content Include="package.json" />
@@ -57,8 +86,24 @@
     <Folder Include=".nginx\" />
     <Folder Include="public\" />
     <Folder Include="src\" />
+    <Folder Include="src\app" />
     <Folder Include="src\assets\" />
-    <Folder Include="src\components\" />
+    <Folder Include="src\app\core\" />
+    <Folder Include="src\app\core\api\" />
+    <Folder Include="src\app\core\repositories\" />
+    <Folder Include="src\app\domain\" />
+    <Folder Include="src\app\domain\entities\" />
+    <Folder Include="src\app\infrastructure\" />
+    <Folder Include="src\app\infrastructure\api\" />
+    <Folder Include="src\app\infrastructure\api\User\" />
+    <Folder Include="src\app\infrastructure\repositories\" />
+    <Folder Include="src\view\pages\" />
+    <Folder Include="src\view\pages\account\" />
+    <Folder Include="src\view\pages\registration\" />
+    <Folder Include="src\app\router\" />
+    <Folder Include="src\view\" />
+    <Folder Include="src\view\containers\" />
+    <Folder Include="src\view\containers\user\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\main.ts" />
@@ -66,7 +111,6 @@
   <ItemGroup>
     <Content Include="babel.config.js" />
   </ItemGroup>
-  <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
   <ProjectExtensions>
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">

@@ -21,6 +21,6 @@ namespace SOL.Core.Commands
             return validationResult;
         }
 
-        public Result Return(object data = null) => new(!Notifications.Any(), Notifications, data);
+        public Result Return() => new(!Notifications.Any(), Notifications);
     }
 }

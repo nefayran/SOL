@@ -21,6 +21,11 @@
     "import/prefer-default-export": "off",
     "import/no-unresolved": "off",
     "import/extensions": "off",
+    "no-unused-vars": "off",
+    "class-methods-use-this": "off",
+    "no-useless-constructor": "off",
+    "no-empty-function": "off",
+    "no-shadow": "off",
     "no-param-reassign": [
       "error",
       {

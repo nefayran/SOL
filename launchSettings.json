@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "Docker Compose": {
+      "commandName": "DockerCompose",
+      "serviceActions": {
+        "identity_db": "StartWithoutDebugging",
+        "pgadmin": "StartWithoutDebugging",
+        "sol.identity": "StartWithoutDebugging",
+        "sol.web": "StartWithoutDebugging"
+      },
+      "commandVersion": "1.0"
+    }
+  }
+}

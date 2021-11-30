@@ -13,9 +13,9 @@ using MediatR;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using SOL.Identity.SOL.Identity.Domain.Entities;
-using SOL.Identity.SOL.Identity.Infrastructure.Data.Context;
-using SOL.Identity.SOL.Identity.IoC;
+using SOL.Identity.Domain.Entities;
+using SOL.Identity.Infrastructure.Data.Context;
+using SOL.Identity.IoC;
 
 namespace SOL.Identity
 {
@@ -45,6 +45,16 @@ namespace SOL.Identity
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "SOL.Identity", Version = "v1" });
             });
+            
+            // CORS.
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                    );
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,10 +63,14 @@ namespace SOL.Identity
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "SOL.Identity v1"));
             }
 
+            app.UseCors("CorsPolicy");
+
+            app.UseSwagger();
+            
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "SOL.Identity v1"));
+            
             app.UseHttpsRedirection();
 
             app.UseRouting();
