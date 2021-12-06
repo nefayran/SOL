@@ -2,6 +2,7 @@
 import { ApiRequest } from "@/app/core/api/ApiRequest";
 import { HttpMethod } from "@/app/core/api/HttpMethod";
 import PushUserRequest from "@/app/infrastructure/requests/User/PushUserRequest";
+import IUser from "@/app/domain/entities/IUser";
 /*
  * API Resolution:
  * Push + Entity- POST
@@ -21,6 +22,20 @@ export namespace UserAPI {
 
     constructor(public params: PushUserRequest) {
       this.path = "user/create";
+      this.response = false;
+    }
+  }
+  export class LoginUser implements ApiRequest<boolean> {
+    response: boolean;
+
+    path: "user/login";
+
+    method = HttpMethod.POST;
+
+    parse = (data: AxiosResponse) => data.data;
+
+    constructor(public params: IUser) {
+      this.path = "user/login";
       this.response = false;
     }
   }

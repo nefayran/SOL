@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using SOL.Identity.Application.Interfaces;
@@ -40,8 +41,9 @@ namespace SOL.Identity.Infrastructure.Repositories
         public async Task<List<string>> LoginUserAsync(User user)
         {
             List<string> errors = new();
-            if(await ExistsAsync(user.Email)) {
-                var result = await _signInManager.CheckPasswordSignInAsync(user, user.Password, false);
+            if (await ExistsAsync(user.Email)) {
+                var localUser = await _userManager.FindByEmailAsync(user.Email);
+                var result = await _signInManager.CheckPasswordSignInAsync(localUser, user.Password, false);
                 // SignIn success.
                 if (result.Succeeded)
                 {
@@ -49,7 +51,7 @@ namespace SOL.Identity.Infrastructure.Repositories
                 }
                 // SignIn fail.
                 // Check password.
-                var pw = await _userManager.CheckPasswordAsync(user, user.Password);
+                var pw = await _userManager.CheckPasswordAsync(localUser, user.Password);
                 if (!pw)
                 {
                     errors.Add("Invalid password for user.");

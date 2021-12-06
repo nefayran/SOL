@@ -31,14 +31,13 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include=".dockerignore">
-      <SubType>Content</SubType>
-      <DependentUpon>Dockerfile</DependentUpon>
-    </Content>
     <Content Include=".eslintrc.js" />
-    <Content Include=".prettierrc.json" />
+    <Content Include=".prettierrc.js" />
+    <Content Include="Dockerfile" />
     <Content Include="index.html" />
+    <Content Include="src\app\application\Token\CheckTokenCommandHandler.ts" />
     <Content Include="src\app\application\User\CreateUserCommandHandler.ts" />
+    <Content Include="src\app\application\User\LoginUserCommandHandler.ts" />
     <Content Include="src\app\core\api\ApiClient.ts" />
     <Content Include="src\app\core\api\ApiError.ts" />
     <Content Include="src\app\core\api\ApiRequest.ts" />
@@ -47,31 +46,55 @@
     <Content Include="src\app\core\api\NetworkClient.ts" />
     <Content Include="src\app\core\commands\ICommandBase.ts" />
     <Content Include="src\app\core\commands\ICommandHandlerBase.ts" />
+    <Content Include="src\app\core\commands\ValidationResult.ts" />
+    <Content Include="src\app\core\commands\IValidator.ts" />
     <Content Include="src\app\core\commands\Result.ts" />
+    <Content Include="src\app\core\commands\validator\ValidatorBase.ts" />
     <Content Include="src\app\core\repositories\IRepository.ts" />
+    <Content Include="src\app\core\services\IBaseService.ts" />
+    <Content Include="src\app\core\usecases\BaseUseCase.ts" />
+    <Content Include="src\app\core\usecases\IError.ts" />
+    <Content Include="src\app\domain\commands\Token\CheckTokenCommand.ts" />
+    <Content Include="src\app\domain\commands\Token\Validators\CheckTokenCommandValidator.ts" />
     <Content Include="src\app\domain\commands\User\CreateUserCommand.ts" />
+    <Content Include="src\app\domain\commands\User\LoginUserCommand.ts" />
     <Content Include="src\app\domain\commands\User\UserCommandBase.ts" />
     <Content Include="src\app\domain\commands\User\Validators\CreateUserCommandValidator.ts" />
+    <Content Include="src\app\domain\commands\User\Validators\LoginUserCommandValidator.ts" />
     <Content Include="src\app\domain\decorators\MathDecorator.ts" />
-    <Content Include="src\app\domain\entities\User.ts" />
+    <Content Include="src\app\domain\entities\IToken.ts" />
+    <Content Include="src\app\domain\entities\IUser.ts" />
+    <Content Include="src\app\domain\interfaces\repositories\ITokenRepository.ts" />
     <Content Include="src\app\domain\interfaces\repositories\IUserRepository.ts" />
+    <Content Include="src\app\infrastructure\api\Token\Token.ts" />
     <Content Include="src\app\infrastructure\api\User\User.ts" />
+    <Content Include="src\app\infrastructure\repositories\TokenRepository.ts" />
     <Content Include="src\app\infrastructure\repositories\UserRepository.ts" />
+    <Content Include="src\app\infrastructure\requests\Token\PushCheckTokenRequest.ts" />
     <Content Include="src\app\infrastructure\requests\User\PushUserRequest.ts" />
+    <Content Include="src\app\infrastructure\security\Token\JwtToken.ts" />
     <Content Include="src\app\ioc\modules.ts" />
+    <Content Include="src\app\services\ErrorService.ts" />
+    <Content Include="src\app\services\GuidGenerator.ts" />
+    <Content Include="src\app\services\ValidatorErrorService.ts" />
+    <Content Include="src\app\store\modules\token\index.ts" />
+    <Content Include="src\app\store\modules\token\types.ts" />
+    <Content Include="src\app\usescases\User\LoginUseCase.ts" />
+    <Content Include="src\app\usescases\User\RegistrationUseCase.ts" />
     <Content Include="src\assets\logo.png" />
-    <Content Include="src\view\components\HelloWorld.vue" />
+    <Content Include="src\plugins\vuetify.ts" />
+    <Content Include="src\view\components\ErrorList\ErrorList.vue" />
     <Content Include="src\view\containers\user\account\AccountContainer.vue" />
     <Content Include="src\view\containers\user\login\LoginContainer.vue" />
     <Content Include="src\view\containers\user\registration\RegistrationContainer.vue" />
     <Content Include="src\view\pages\account\index.vue" />
     <Content Include="src\view\pages\index.vue" />
+    <Content Include="src\view\pages\login\index.vue" />
     <Content Include="src\view\pages\registration\index.vue" />
     <Content Include="src\app\store\index.ts" />
     <Content Include="src\app\store\modules\user\index.ts" />
     <Content Include="src\app\store\modules\user\types.ts" />
     <Content Include="vite.config.js" />
-    <None Include="Dockerfile" />
     <Content Include=".nginx\nginx.conf" />
     <Content Include="public\favicon.ico" />
     <Content Include="src\App.vue" />
@@ -86,7 +109,30 @@
     <Folder Include=".nginx\" />
     <Folder Include="public\" />
     <Folder Include="src\" />
-    <Folder Include="src\app" />
+    <Folder Include="src\app\" />
+    <Folder Include="src\app\application\" />
+    <Folder Include="src\app\application\User\" />
+    <Folder Include="src\app\core\commands\" />
+    <Folder Include="src\app\core\commands\validator\" />
+    <Folder Include="src\app\core\services\" />
+    <Folder Include="src\app\core\usecases\" />
+    <Folder Include="src\app\domain\commands\" />
+    <Folder Include="src\app\domain\commands\User\" />
+    <Folder Include="src\app\domain\commands\User\Validators\" />
+    <Folder Include="src\app\domain\decorators\" />
+    <Folder Include="src\app\domain\interfaces\" />
+    <Folder Include="src\app\domain\interfaces\repositories\" />
+    <Folder Include="src\app\infrastructure\requests\" />
+    <Folder Include="src\app\infrastructure\requests\User\" />
+    <Folder Include="src\app\infrastructure\security\" />
+    <Folder Include="src\app\infrastructure\security\Token\" />
+    <Folder Include="src\app\ioc\" />
+    <Folder Include="src\app\services\" />
+    <Folder Include="src\app\store\" />
+    <Folder Include="src\app\store\modules\" />
+    <Folder Include="src\app\store\modules\user\" />
+    <Folder Include="src\app\usescases\" />
+    <Folder Include="src\app\usescases\User\" />
     <Folder Include="src\assets\" />
     <Folder Include="src\app\core\" />
     <Folder Include="src\app\core\api\" />
@@ -97,8 +143,15 @@
     <Folder Include="src\app\infrastructure\api\" />
     <Folder Include="src\app\infrastructure\api\User\" />
     <Folder Include="src\app\infrastructure\repositories\" />
+    <Folder Include="src\plugins\" />
+    <Folder Include="src\view\components\" />
+    <Folder Include="src\view\components\ErrorList\" />
+    <Folder Include="src\view\containers\user\account\" />
+    <Folder Include="src\view\containers\user\login\" />
+    <Folder Include="src\view\containers\user\registration\" />
     <Folder Include="src\view\pages\" />
     <Folder Include="src\view\pages\account\" />
+    <Folder Include="src\view\pages\login\" />
     <Folder Include="src\view\pages\registration\" />
     <Folder Include="src\app\router\" />
     <Folder Include="src\view\" />
@@ -110,6 +163,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="babel.config.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="src\app\application\Interfaces\ITokenQueries.ts" />
+    <Compile Include="src\app\application\Token\TokenQueries.ts" />
   </ItemGroup>
   <ProjectExtensions>
     <VisualStudio>

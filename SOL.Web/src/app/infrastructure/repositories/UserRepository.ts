@@ -3,14 +3,15 @@ import IUserRepository from "@/app/domain/interfaces/repositories/IUserRepositor
 import store from "@/app/store";
 import { ApiClient } from "@/app/core/api/ApiClient";
 import { UserAPI } from "@/app/infrastructure/api/User/User";
-import IUser from "@/app/domain/entities/User";
+import IUser from "@/app/domain/entities/IUser";
 import PushUserRequest from "@/app/infrastructure/requests/User/PushUserRequest";
 
 @injectable()
 export default class UserRepository implements IUserRepository {
   async AddAsync(user: IUser): Promise<any> {
     try {
-      return await store.dispatch("AddAsync", user);
+      await store.dispatch("UserStore/AddAsync", user);
+      return this.Get() === user;
     } catch (error) {
       return false;
     }
@@ -33,8 +34,13 @@ export default class UserRepository implements IUserRepository {
   }
 
   Get(): IUser {
-    console.log(store.getters);
-    return store.getters.getUser;
+    return store.getters["UserStore/getUser"];
+  }
+
+  PushLoginUserAsync(): Promise<any> {
+    // Get User from store;
+    const user: IUser = this.Get();
+    return ApiClient.shared.request(new UserAPI.LoginUser(user));
   }
 
   UpdateAsync(entity: IUser): Promise<any> {

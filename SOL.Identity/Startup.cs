@@ -38,7 +38,7 @@ namespace SOL.Identity
 
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<IdentityContext>();
- 
+
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

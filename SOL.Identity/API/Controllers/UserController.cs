@@ -3,6 +3,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SOL.Core.Commands;
+using SOL.Identity.Application.Interfaces;
 using SOL.Identity.Application.User;
 using SOL.Identity.Domain.Commands.User;
 using SOL.Identity.Infrastructure.Security;
@@ -16,12 +17,12 @@ namespace SOL.Identity.API.Controllers
         private readonly IMediator _mediator;
         private readonly ILogger<UserController> _logger;
         private readonly JwtValidator _jwt;
-        private readonly UserQueries _userQueries;
+        private readonly IUserQueries _userQueries;
 
         public UserController(
             IMediator mediator,
             ILogger<UserController> logger, JwtValidator jwt,
-            UserQueries userQueries)
+            IUserQueries userQueries)
         {
             _mediator = mediator;
             _logger = logger;

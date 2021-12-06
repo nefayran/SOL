@@ -30,6 +30,8 @@ namespace SOL.Identity.IoC
             // Commands.
             services.AddScoped<ICommandHandlerAsync<CreateUserCommand>, CreateUserCommandHandler>();
             services.AddScoped<ICommandHandlerAsync<LoginUserCommand>, LoginUserCommandHandler>();
+            //Queries.
+            services.AddScoped<IUserQueries, UserQueries>();
             // JWT key.
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("TokenKey"));
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

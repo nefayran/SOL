@@ -9,16 +9,20 @@
  * destroyed -> onUnmounted
  * errorCaptured -> onErrorCaptured
  */
+// import { loadFonts } from './plugins/webfontloader'
+
+// loadFonts()
 import "reflect-metadata"; // try delete.
 import { createApp } from "vue";
 import App from "./App.vue";
+import vuetify from "./plugins/vuetify";
 import { setup } from "./app/ioc/modules";
 
 import router from "./app/router";
 
 const app = createApp(App);
 
-app.use(router);
+app.use(router).use(vuetify);
 
 setup();
 

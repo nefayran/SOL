@@ -5,8 +5,7 @@
       "serviceActions": {
         "identity_db": "StartWithoutDebugging",
         "pgadmin": "StartWithoutDebugging",
-        "sol.identity": "StartWithoutDebugging",
-        "sol.web": "StartWithoutDebugging"
+        "sol.identity": "StartDebugging"
       },
       "commandVersion": "1.0"
     }

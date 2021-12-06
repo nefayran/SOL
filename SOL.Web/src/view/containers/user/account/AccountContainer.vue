@@ -1,13 +1,11 @@
 ﻿<template>
-
+  <h1>hello world</h1>
 </template>
 
-<script>
-export default {
-  name: "LoginContainer"
-}
+<script lang="ts">
+import { defineComponent } from "vue";
+
+export default defineComponent({
+  name: "AccountContainer",
+});
 </script>
-
-<style scoped>
-
-</style>

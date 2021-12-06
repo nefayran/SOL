@@ -6,7 +6,7 @@
   ActionContext,
 } from "vuex";
 import * as types from "./types";
-import IUser from "@/app/domain/entities/User";
+import IUser from "@/app/domain/entities/IUser";
 import { RootState } from "@/app/store";
 
 // State interface.
@@ -44,6 +44,7 @@ const actions: ActionTree<UserState, RootState> = {
 };
 
 export const store: Module<UserState, RootState> = {
+  namespaced: true,
   state,
   getters,
   mutations,

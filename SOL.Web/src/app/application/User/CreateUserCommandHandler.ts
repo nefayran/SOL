@@ -1,11 +1,12 @@
 ﻿import { injectable, inject } from "tsyringe";
-import { validate, IsString, Length } from "class-validator";
 import ICommandHandlerBase from "@/app/core/commands/ICommandHandlerBase";
 import IUserRepository from "@/app/domain/interfaces/repositories/IUserRepository";
-import IUser from "@/app/domain/entities/User";
+import IUser from "@/app/domain/entities/IUser";
 import Result from "@/app/core/commands/Result";
+import IValidator from "@/app/core/commands/IValidator";
 import CreateUserCommand from "@/app/domain/commands/User/CreateUserCommand";
-import createUserCommandValidator from "@/app/domain/commands/User/Validators/CreateUserCommandValidator";
+import ValidationResult from "@/app/core/commands/ValidationResult";
+import IBaseService from "@/app/core/services/IBaseService";
 /*
  * Command handler resolution:
  * CAS: 1 command 1 action 1 side
@@ -19,26 +20,30 @@ import createUserCommandValidator from "@/app/domain/commands/User/Validators/Cr
 @injectable()
 export default class CreateUserCommandHandler implements ICommandHandlerBase {
   constructor(
-    @inject("UserRepository") private userRepository: IUserRepository // Late @inject("UserRepository") // private createUserCommandValidator: IUserRepository
+    @inject("CreateUserCommandValidator") private createUserCommandValidator: IValidator<CreateUserCommand>,
+    @inject("UserRepository") private userRepository: IUserRepository,
+    @inject("GuidGenerator") private guidGenerator: IBaseService
   ) {}
 
   async handle(command: CreateUserCommand) {
+    const result = new Result(true, []);
     // Validation.
-    const validationResult = await createUserCommandValidator.Validate(command);
-    if (validationResult.length > 0) {
-      return new Result(false, validationResult);
+    const validationResult: ValidationResult = await this.createUserCommandValidator.ValidateAsync(command);
+    if (validationResult.Errors.length > 0) {
+      result.Errors = validationResult.Errors;
+      return result;
     }
     // Create entity.
-    const user: IUser = {
-      Id: "something id",
+    const user: IUser = Object.freeze({
+      Id: await guidGenerator.handle(),
       Email: command.Email,
       Password: command.Password,
-    };
+    });
     // If you add entity to store use Entity argument.
-    await this.userRepository.AddAsync(user);
+    const addToRepositoryResult = await this.userRepository.AddAsync(user);
     // Actions with server should be without arguments.
-    await this.userRepository.PushUserAsync();
-    // Return Result().
-    return new Result(true, validationResult);
+    const pushUserResult = await this.userRepository.PushUserAsync();
+    // Return Result.
+    return result;
   }
 }

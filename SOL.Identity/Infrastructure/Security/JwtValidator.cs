@@ -16,7 +16,7 @@ namespace SOL.Identity.Infrastructure.Security
             _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["TokenKey"]));
         }
 
-        public string ValidateJwtToken(string token)
+        public bool ValidateJwtToken(string token)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             try
@@ -33,13 +33,18 @@ namespace SOL.Identity.Infrastructure.Security
 
                 var jwtToken = (JwtSecurityToken)validatedToken;
                 var name = jwtToken.Claims.First(x => x.Type == "nameid").Value;
-                return name;
+                if (name.Length > 0)
+                {
+                    return true;
+                }
             }
             catch
             {
                 // return null if validation fails
-                return null;
+                return false;
             }
+
+            return false;
         }
     }
 }

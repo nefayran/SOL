@@ -1,16 +1,7 @@
-﻿import { validate } from "class-validator";
-import CreateUserCommand from "@/app/domain/commands/User/CreateUserCommand";
+﻿import { injectable } from "tsyringe";
+import ValidatorBase from "@/app/core/commands/validator/ValidatorBase";
 
-export default class CreateUserCommandValidator {
-  constructor() {}
-
-  static Validate(createUserCommand: CreateUserCommand): Promise<any> {
-    return validate(createUserCommand).then((errors) => {
-      // Errors is an array of validation errors.
-      if (errors.length > 0) {
-        return errors;
-      }
-      return [];
-    });
-  }
+@injectable()
+export default class CreateUserCommandValidator extends ValidatorBase {
+  // something interesting...
 }
