@@ -7,11 +7,13 @@ namespace SOL.Core.Commands
     {
         public readonly IEnumerable<string> Errors;
         public readonly bool Success;
+        public readonly object Data;
         
-        public Result(bool success, IEnumerable<string> errors)
+        public Result(bool success, IEnumerable<string> errors, object data = null)
         {
             Success = success;
             Errors = errors;
+            Data = data;
         }
     }
 }

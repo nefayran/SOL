@@ -26,7 +26,7 @@ export default class LoginUserCommandHandler implements ICommandHandlerBase {
     @inject("LoginUserCommandValidator") private loginUserCommandValidator: IValidator<LoginUserCommand>,
     @inject("UserRepository") private userRepository: IUserRepository,
     @inject("TokenRepository") private tokenRepository: ITokenRepository,
-    @inject("GuidGenerator") private guidGenerator: IBaseService
+    @inject("GuidService") private guidService: IBaseService
   ) {}
 
   async handle(command: LoginUserCommand) {
@@ -39,14 +39,18 @@ export default class LoginUserCommandHandler implements ICommandHandlerBase {
     }
     // Create entity.
     const user: IUser = Object.freeze({
-      Id: await guidGenerator.handle(),
+      Id: await this.guidService.handle(),
       Email: command.Email,
       Password: command.Password,
     });
     await this.userRepository.AddAsync(user); // add
     const loginUserAsyncResult = await this.userRepository.PushLoginUserAsync(); // push
-    const jwtToken: IToken = Object.freeze(new JwtToken(loginUserAsyncResult.token));
-    await this.tokenRepository.AddAsync(jwtToken); // add
+    const token: IToken = {
+      Id: await this.guidService.handle(),
+      Date: new Date(),
+      Token: loginUserAsyncResult.token,
+    };
+    await this.tokenRepository.AddAsync(Object.freeze(token)); // add
     // Return Result.
     return result;
   }

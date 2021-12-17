@@ -21,9 +21,15 @@ namespace SOL.Identity.Application.User
             _userRepository = userRepository;
         }
 
+        // TODO: Transfer to TokenQueries.
         public async Task<string> GetTokenByEmailAsync(string email)
         {
             return await _userRepository.GetTokenByEmailAsync(email);
+        }
+        
+        public async Task<Domain.Entities.User> GetByEmailAsync(string email)
+        {
+            return await _userRepository.GetByEmailAsync(email);
         }
     }
 }

@@ -8,6 +8,13 @@ import LoginUserCommandValidator from "@/app/domain/commands/User/Validators/Log
 import TokenRepository from "@/app/infrastructure/repositories/TokenRepository";
 import CheckTokenCommandHandler from "@/app/application/Token/CheckTokenCommandHandler";
 import CheckTokenCommandValidator from "@/app/domain/commands/Token/Validators/CheckTokenCommandValidator";
+import GuidService from "@/app/services/GuidService";
+import UserQueries from "@/app/application/User/UserQueries";
+import ErrorService from "@/app/services/ErrorService";
+import LoginUseCase from "@/app/usescases/User/LoginUseCase";
+import ValidatorErrorService from "@/app/services/ValidatorErrorService";
+import RegistrationUseCase from "@/app/usescases/User/RegistrationUseCase";
+import ValidateTokenUseCase from "@/app/usescases/Token/ValidateTokenUseCase";
 
 export const setup = () => {
   // Commands.
@@ -19,6 +26,11 @@ export const setup = () => {
   });
   container.register("CheckTokenCommandHandler", {
     useClass: CheckTokenCommandHandler,
+  });
+
+  // Queries.
+  container.register("UserQueries", {
+    useClass: UserQueries,
   });
 
   // Repositories.
@@ -38,5 +50,27 @@ export const setup = () => {
   });
   container.register("CheckTokenCommandValidator", {
     useClass: CheckTokenCommandValidator,
+  });
+
+  // Services.
+  container.register("ErrorService", {
+    useClass: ErrorService,
+  });
+  container.register("ValidatorErrorService", {
+    useClass: ValidatorErrorService,
+  });
+  container.register("GuidService", {
+    useClass: GuidService,
+  });
+
+  // Uses Cases
+  container.register("LoginUseCase", {
+    useClass: LoginUseCase,
+  });
+  container.register("RegistrationUseCase", {
+    useClass: RegistrationUseCase,
+  });
+  container.register("ValidateTokenUseCase", {
+    useClass: ValidateTokenUseCase,
   });
 };

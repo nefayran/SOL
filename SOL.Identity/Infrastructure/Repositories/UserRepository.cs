@@ -62,6 +62,11 @@ namespace SOL.Identity.Infrastructure.Repositories
             return errors;
         }
 
+        public async Task<User> GetByEmailAsync(string email)
+        {
+            return await _userManager.FindByEmailAsync(email);
+        }
+
         public async Task<bool> AddAsync(User user)
         {
             var result = await _userManager.CreateAsync(user, user.Password);
@@ -86,7 +91,6 @@ namespace SOL.Identity.Infrastructure.Repositories
 
         public void Dispose()
         {
-            // _identityContext.Dispose();
             GC.SuppressFinalize(this);
         }
     }

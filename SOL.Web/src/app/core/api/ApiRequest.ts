@@ -7,6 +7,7 @@ export type ApiRequest<Response extends ApiResponse> = {
   method: HttpMethod;
   params?: any;
   baseURL?: string;
+  authorize: boolean;
   // eslint-disable-next-line no-unused-vars
   parse?: (data: any) => Response;
 };

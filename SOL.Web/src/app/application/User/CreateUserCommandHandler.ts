@@ -22,7 +22,7 @@ export default class CreateUserCommandHandler implements ICommandHandlerBase {
   constructor(
     @inject("CreateUserCommandValidator") private createUserCommandValidator: IValidator<CreateUserCommand>,
     @inject("UserRepository") private userRepository: IUserRepository,
-    @inject("GuidGenerator") private guidGenerator: IBaseService
+    @inject("GuidService") private guidService: IBaseService
   ) {}
 
   async handle(command: CreateUserCommand) {
@@ -35,7 +35,7 @@ export default class CreateUserCommandHandler implements ICommandHandlerBase {
     }
     // Create entity.
     const user: IUser = Object.freeze({
-      Id: await guidGenerator.handle(),
+      Id: await this.guidService.handle(),
       Email: command.Email,
       Password: command.Password,
     });

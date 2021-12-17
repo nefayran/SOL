@@ -38,10 +38,11 @@ namespace SOL.Identity.Application.User
                 {
                     Email = command.Email, 
                     UserName = command.Email,
-                    Password = command.Password
+                    Password = command.Password,
+                    Token = await _userRepository.GetTokenByEmailAsync(command.Email),
                 };
                 var errors = await _userRepository.LoginUserAsync(user);
-                return errors is not null ? new Result(false, errors) : Return();
+                return errors is not null ? new Result(false, errors) : new Result(true, null, user.Token);
             }
 
             return Return();

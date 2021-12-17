@@ -32,21 +32,7 @@ namespace SOL.Identity.IoC
             services.AddScoped<ICommandHandlerAsync<LoginUserCommand>, LoginUserCommandHandler>();
             //Queries.
             services.AddScoped<IUserQueries, UserQueries>();
-            // JWT key.
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("TokenKey"));
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-            .AddJwtBearer(
-                    opt =>
-                    {
-                        opt.TokenValidationParameters = new TokenValidationParameters
-                        {
-                            ValidateIssuerSigningKey = true,
-                            IssuerSigningKey = key,
-                            ValidateAudience = false,
-                            ValidateIssuer = false,
-                        };
-                    });
-            // JWT.
+            // Security.
             services.AddScoped<IJwtGenerator, JwtGenerator>();
             services.AddSingleton<JwtValidator>();
         }

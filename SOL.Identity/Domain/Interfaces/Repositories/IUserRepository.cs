@@ -31,5 +31,11 @@ namespace SOL.Identity.Domain.Interfaces.Repositories
         /// <param name="user">User</param>
         /// <returns>true if successful</returns>
         Task<List<string>> LoginUserAsync(User user);
+        /// <summary>
+        /// Get user by email.
+        /// </summary>
+        /// <param name="email">Email</param>
+        /// <returns>user if successful</returns>
+        Task<User> GetByEmailAsync(string email);
     }
 }

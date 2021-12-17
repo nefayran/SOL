@@ -1,8 +1,6 @@
 ﻿import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import { container } from "tsyringe";
-import LoginUserCommand from "@/app/domain/commands/User/LoginUserCommand";
-import CheckTokenCommand from "@/app/domain/commands/Token/CheckTokenCommand";
-import ICommandHandlerBase from "@/app/core/commands/ICommandHandlerBase";
+import { IValidateTokenUseCase } from "@/app/usescases/Token/ValidateTokenUseCase";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -49,18 +47,13 @@ const router = createRouter({
 });
 
 router.beforeEach(async (to, from, next) => {
-  const publicPages = ["/login", "/register", "/home"];
+  const publicPages = ["/login", "/registration"];
   const authRequired = !publicPages.includes(to.path);
   const token = localStorage.getItem("token");
-  let commandResult = false;
-  if (token) {
-    const checkTokenCommand: CheckTokenCommand = new CheckTokenCommand({ Token: token });
-    const checkTokenCommandHandler: ICommandHandlerBase = container.resolve("CheckTokenCommandHandler");
-    commandResult = await checkTokenCommandHandler.handle(checkTokenCommand);
-  }
-  // trying to access a restricted page + not logged in
+  const validateTokenUseCase: IValidateTokenUseCase = container.resolve("ValidateTokenUseCase");
+  const valid = await validateTokenUseCase.execute(token);
   // redirect to login page
-  if (authRequired && !commandResult.Success) {
+  if (authRequired && !valid) {
     next("/login");
   } else {
     next();

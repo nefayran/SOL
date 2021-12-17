@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SOL.Core.Commands;
@@ -34,6 +35,7 @@ namespace SOL.Identity.API.Controllers
         [ProducesResponseType(200, Type = typeof(Result))]
         [ProducesResponseType(400)]
         [ProducesResponseType(409)]
+        [AllowAnonymous]
         public async Task<IActionResult> CreateUserAsync([FromBody] CreateUserCommand command)
         {
             var result = await _mediator.Send(command);
@@ -52,6 +54,7 @@ namespace SOL.Identity.API.Controllers
         [ProducesResponseType(200, Type = typeof(Result))]
         [ProducesResponseType(400)]
         [ProducesResponseType(409)]
+        [AllowAnonymous]
         public async Task<IActionResult> LoginUserAsync([FromBody] LoginUserCommand command)
         {
             var result = await _mediator.Send(command);
@@ -59,8 +62,8 @@ namespace SOL.Identity.API.Controllers
             if (result.Success)
             {
                 _logger.LogInformation("User login successful.");
-                var token = _userQueries.GetTokenByEmailAsync(command.Email).Result;
-                command.Token = token;
+                // TODO: Rework with query.
+                command.Token = result.Data;
                 return Ok(command);
             }
 
@@ -72,38 +75,19 @@ namespace SOL.Identity.API.Controllers
         [ProducesResponseType(200, Type = typeof(Result))]
         [ProducesResponseType(400)]
         [ProducesResponseType(409)]
+        [Authorize]
         public IActionResult CheckLoginUser([FromBody] CheckLoginUserCommand command)
         {
-            //var result = await _mediator.Send(command);
+            // TODO: Rework with command.
             var result = _jwt.ValidateJwtToken(command.Token);
             return Ok(result);
-            //if (result.Success)
-            //{
-            //    _logger.LogInformation("User login successfuly.");
-            //    command.Token = result.Data;
-            //    return Ok(command);
-            //}
-
-            //_logger.LogError("Error when user login.");
-            //return BadRequest(result.Errors);
         }
         [HttpGet]
-        [Route("get")]
-        public IActionResult GetUser()
+        [Route("fetch")]
+        [Authorize]
+        public IActionResult FetchUser([FromQuery] string email)
         {
-            return Ok("test");
-            //var result = await _mediator.Send(command);
-            // var result = _jwt.ValidateJwtToken(command.Token);
-            // return Ok(result);
-            //if (result.Success)
-            //{
-            //    _logger.LogInformation("User login successfuly.");
-            //    command.Token = result.Data;
-            //    return Ok(command);
-            //}
-
-            //_logger.LogError("Error when user login.");
-            //return BadRequest(result.Errors);
+            return Ok(_userQueries.GetByEmailAsync(email));
         }
     }
 }

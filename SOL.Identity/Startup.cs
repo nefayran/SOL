@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -12,7 +13,12 @@ using Microsoft.OpenApi.Models;
 using MediatR;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.IdentityModel.Tokens;
 using SOL.Identity.Domain.Entities;
 using SOL.Identity.Infrastructure.Data.Context;
 using SOL.Identity.IoC;
@@ -32,15 +38,34 @@ namespace SOL.Identity
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMediatR(typeof(Startup));
-
+           
             services.AddDbContext(Configuration);
-            services.Register();
 
-            services.AddIdentity<User, IdentityRole>()
-                .AddEntityFrameworkStores<IdentityContext>();
+            var builder = services.AddIdentityCore<User>();
+            // TODO: Add roles...
+            var identityBuilder = new IdentityBuilder(builder.UserType, builder.Services);
+            identityBuilder.AddEntityFrameworkStores<IdentityContext>();
+            identityBuilder.AddSignInManager<SignInManager<User>>();
+            
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["TokenKey"]));
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(
+                    opt =>
+                    {
+                        opt.TokenValidationParameters = new TokenValidationParameters
+                        {
+                            ValidateIssuerSigningKey = true,
+                            IssuerSigningKey = key,
+                            ValidateAudience = false,
+                            ValidateIssuer = false,
+                        };
+                    });	
+            
+            services.Register();
 
 
             services.AddControllers();
+            
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "SOL.Identity", Version = "v1" });
@@ -49,11 +74,20 @@ namespace SOL.Identity
             // CORS.
             services.AddCors(options =>
             {
-                options.AddPolicy("CorsPolicy",
+                options.AddPolicy("Public",
                     builder => builder.AllowAnyOrigin()
                         .AllowAnyMethod()
                         .AllowAnyHeader()
                     );
+                options.AddPolicy("Localhost",
+                    builder => builder
+                        .SetIsOriginAllowed(origin => new Uri(origin).Host == "localhost")
+                        .AllowAnyHeader()
+                );
+                options.AddPolicy("Private",
+                    builder => builder.WithOrigins("http://localhost:8080")
+                        .AllowAnyMethod()
+                        .AllowAnyHeader());
             });
         }
 
@@ -65,7 +99,7 @@ namespace SOL.Identity
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseCors("CorsPolicy");
+            app.UseCors("Private");
 
             app.UseSwagger();
             

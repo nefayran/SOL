@@ -37,10 +37,9 @@
 
 <script lang="ts" setup>
 import { ref } from "vue";
-import LoginUseCase, { ILoginFields, ILoginUseCase, ILoginUseCaseResult } from "@/app/usescases/User/LoginUseCase";
-import ErrorService from "@/app/services/ErrorService";
+import { container } from "tsyringe";
+import { ILoginUseCase, ILoginFields, ILoginUseCaseResult } from "@/app/usescases/User/LoginUseCase";
 import ErrorList from "@/view/components/ErrorList/ErrorList.vue";
-import ValidatorErrorService from "@/app/services/ValidatorErrorService";
 import router from "@/app/router";
 
 const LoginResult: any = ref(<ILoginUseCaseResult>{
@@ -56,15 +55,8 @@ const LoginFields: any = ref(<ILoginFields>{
 
 // Submit create user command.
 const Submit = async () => {
-  const params: ILoginUseCase = {
-    ErrorService: new ErrorService({
-      context: "Login",
-    }),
-    ValidatorErrorService: new ValidatorErrorService({
-      context: "Login",
-    }),
-  };
-  LoginResult.value = await new LoginUseCase(params).execute(LoginFields.value);
+  const loginUseCase: ILoginUseCase = container.resolve("LoginUseCase");
+  LoginResult.value = await loginUseCase.execute(LoginFields.value);
   if (LoginResult.value.Success) {
     await router.push("/account");
   }

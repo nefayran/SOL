@@ -7,7 +7,9 @@ namespace SOL.Identity.Domain.Entities
     public class User : IdentityUser, IEntity
     {
         public string Password;
-        
+
+        public string Token;
+
         string IEntity.Id { get => Id; set => Id = value; }
     }
 }

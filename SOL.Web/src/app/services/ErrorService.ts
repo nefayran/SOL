@@ -1,15 +1,17 @@
-﻿import IBaseService from "@/app/core/services/IBaseService";
+﻿import { injectable } from "tsyringe";
+import IBaseService from "@/app/core/services/IBaseService";
 import IError from "@/app/core/usecases/IError";
 
-export interface IErrorService {
+export interface IErrorService extends IBaseService {
   context?: any;
 }
 
+@injectable()
 export default class ErrorService implements IBaseService {
   context: any;
 
-  constructor({ context = "Application" }: IErrorService) {
-    this.context = context;
+  constructor() {
+    this.context = "Application";
   }
 
   async handle(error: any): Promise<Array<IError>> {
@@ -18,19 +20,37 @@ export default class ErrorService implements IBaseService {
     const errors: Array<IError> = [];
     if (error.status === 400) {
       error.raw.response.data.forEach((e: any) => {
-        const err: IError = {
+        const iError: IError = {
           Id: "something id",
           Type: 0,
           Message: e,
         };
-        errors.push(err);
+        errors.push(iError);
       });
     }
     if (error.status === 415) {
-      errors.push("Not a supported data type");
+      const iError: IError = {
+        Id: "something id",
+        Type: 0,
+        Message: "Not a supported data type",
+      };
+      errors.push(iError);
     }
     if (error.status === 409) {
-      errors.push("Conflict");
+      const iError: IError = {
+        Id: "something id",
+        Type: 0,
+        Message: "Conflict",
+      };
+      errors.push(iError);
+    }
+    if (error.status === undefined) {
+      const iError: IError = {
+        Id: "something id",
+        Type: 0,
+        Message: "Unspecified error",
+      };
+      errors.push(iError);
     }
     return new Promise((resolve, reject) => {
       resolve(errors);

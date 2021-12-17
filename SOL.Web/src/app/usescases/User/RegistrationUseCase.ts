@@ -1,9 +1,9 @@
-﻿import { container } from "tsyringe";
+﻿import { container, inject, injectable } from "tsyringe";
 import BaseUseCase from "@/app/core/usecases/BaseUseCase";
 import CreateUserCommand from "@/app/domain/commands/User/CreateUserCommand";
-import ErrorService from "@/app/services/ErrorService";
+import ErrorService, { IErrorService } from "@/app/services/ErrorService";
 import ICommandHandlerBase from "@/app/core/commands/ICommandHandlerBase";
-import ValidatorErrorService from "@/app/services/ValidatorErrorService";
+import ValidatorErrorService, { IValidatorErrorService } from "@/app/services/ValidatorErrorService";
 import Result from "@/app/core/commands/Result";
 import IError from "@/app/core/usecases/IError";
 
@@ -26,20 +26,14 @@ export interface IRegistrationUseCaseResult {
 }
 
 // Registration Use Case.
-export interface IRegistrationUseCase {
-  ErrorService: ErrorService;
-  ValidatorErrorService: ValidatorErrorService;
-}
+export interface IRegistrationUseCase extends BaseUseCase {}
 
-export default class RegistrationUseCase implements BaseUseCase {
-  ErrorService: ErrorService;
-
-  ValidatorErrorService: ValidatorErrorService;
-
-  constructor({ ErrorService, ValidatorErrorService }: IRegistrationUseCase) {
-    this.ErrorService = ErrorService;
-    this.ValidatorErrorService = ValidatorErrorService;
-  }
+@injectable()
+export default class RegistrationUseCase implements IRegistrationUseCase {
+  constructor(
+    @inject("ErrorService") private errorService: IErrorService,
+    @inject("ValidatorErrorService") private validatorErrorService: IValidatorErrorService
+  ) {}
 
   async execute(fields: IRegistrationFields) {
     const result: IRegistrationUseCaseResult = {
@@ -54,10 +48,10 @@ export default class RegistrationUseCase implements BaseUseCase {
       const createUserCommandHandler: ICommandHandlerBase = container.resolve("CreateUserCommandHandler");
       const commandResult: Result = await createUserCommandHandler.handle(createUserCommand);
       // Add Validation Errors to result.
-      result.ValidationErrors = await this.ValidatorErrorService.handle(commandResult.Errors);
+      result.ValidationErrors = await this.validatorErrorService.handle(commandResult.Errors);
     } catch (errors) {
       // Add errors to result.
-      result.Errors = await this.ErrorService.handle(errors);
+      result.Errors = await this.errorService.handle(errors);
     }
     // Success.
     if (result.ValidationErrors.length > 0 || result.Errors.length > 0) {

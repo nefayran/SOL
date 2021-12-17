@@ -18,6 +18,8 @@ export namespace UserAPI {
 
     method = HttpMethod.POST;
 
+    authorize: false;
+
     parse = (data: AxiosResponse) => data.data;
 
     constructor(public params: PushUserRequest) {
@@ -37,6 +39,24 @@ export namespace UserAPI {
     constructor(public params: IUser) {
       this.path = "user/login";
       this.response = false;
+    }
+
+    authorize: false;
+  }
+  export class FetchUserByEmail implements ApiRequest<IUser> {
+    response: IUser;
+
+    path: "user/fetch";
+
+    method = HttpMethod.GET;
+
+    authorize: true;
+
+    parse = (data: AxiosResponse) => data.data;
+
+    constructor(public params: { email: string }) {
+      this.authorize = true;
+      this.path = "user/fetch";
     }
   }
 }

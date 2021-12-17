@@ -28,12 +28,10 @@ export class ApiClient implements NetworkClient {
           withCredentials: false,
           timeout: this.timeout,
           baseURL: request.baseURL || this.baseURL,
-          headers: ApiClient.createHeaders(),
+          headers: ApiClient.createHeaders(request.authorize),
         })
         .then((data: any) => {
-          const response = request.parse
-            ? request.parse(data)
-            : ApiClient.parse<U>(data);
+          const response = request.parse ? request.parse(data) : ApiClient.parse<U>(data);
           resolve(response);
         })
         .catch((err: any) => {
@@ -58,7 +56,13 @@ export class ApiClient implements NetworkClient {
   }
 
   // Create headers
-  private static createHeaders(): any {
+  private static createHeaders(authorize: boolean): any {
+    if (authorize) {
+      const token = localStorage.getItem("token");
+      return {
+        Authorization: `Bearer ${token}`,
+      };
+    }
     return {};
   }
 }

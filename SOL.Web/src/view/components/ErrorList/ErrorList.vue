@@ -25,8 +25,8 @@ const color = (error: IError) => {
 <style lang="scss">
 .sol-error-list {
   position: absolute;
-  right: 0px;
-  top: 0px;
+  right: 0;
+  top: 0;
 
   &__error {
     .v-chip {

@@ -1,15 +1,17 @@
-﻿import IBaseService from "@/app/core/services/IBaseService";
+﻿import { injectable } from "tsyringe";
+import IBaseService from "@/app/core/services/IBaseService";
 import IError from "@/app/core/usecases/IError";
 
-export interface IValidatorErrorService {
+export interface IValidatorErrorService extends IBaseService {
   context?: any;
 }
 
-export default class ValidatorErrorService implements IBaseService {
+@injectable()
+export default class ValidatorErrorService implements IValidatorErrorService {
   context: any;
 
-  constructor({ context = "Application" }: IValidatorErrorService) {
-    this.context = context;
+  constructor() {
+    this.context = "Validation";
   }
 
   async handle(error: any): Promise<Array<IError>> {

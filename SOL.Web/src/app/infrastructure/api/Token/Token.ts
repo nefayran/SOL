@@ -18,6 +18,8 @@ export namespace TokenAPI {
 
     method = HttpMethod.POST;
 
+    authorize = true;
+
     parse = (data: AxiosResponse) => data.data;
 
     constructor(public params: PushCheckTokenRequest) {

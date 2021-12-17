@@ -46,4 +46,9 @@ export default class UserRepository implements IUserRepository {
   UpdateAsync(entity: IUser): Promise<any> {
     return Promise.resolve(undefined);
   }
+
+  FetchUserAsync(email: string): Promise<IUser> {
+    // Get User from network;
+    return ApiClient.shared.request(new UserAPI.FetchUserByEmail({ email }));
+  }
 }

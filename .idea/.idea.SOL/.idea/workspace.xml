@@ -10,78 +10,46 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="923a65b1-3d87-4a69-baf9-63f51f9832cf" name="Changes" comment="Add login use case.&#10;Add JWT tokens.">
-      <change afterPath="$PROJECT_DIR$/SOL.Web/.prettierrc.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SOL.Web/public/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SOL.Web/src/app/application/Interfaces/ITokenQueries.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SOL.Web/src/app/application/Token/CheckTokenCommandHandler.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SOL.Web/src/app/application/Token/TokenQueries.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SOL.Web/src/app/application/User/LoginUserCommandHandler.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SOL.Web/src/app/core/commands/IValidator.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SOL.Web/src/app/core/commands/ValidationResult.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SOL.Web/src/app/core/commands/validator/ValidatorBase.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SOL.Web/src/app/core/services/IBaseService.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SOL.Web/src/app/core/usecases/BaseUseCase.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SOL.Web/src/app/core/usecases/IError.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SOL.Web/src/app/domain/commands/Token/CheckTokenCommand.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SOL.Web/src/app/domain/commands/Token/Validators/CheckTokenCommandValidator.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SOL.Web/src/app/domain/commands/User/LoginUserCommand.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SOL.Web/src/app/domain/commands/User/Validators/LoginUserCommandValidator.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SOL.Web/src/app/domain/entities/IToken.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SOL.Web/src/app/domain/interfaces/repositories/ITokenRepository.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SOL.Web/src/app/infrastructure/api/Token/Token.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SOL.Web/src/app/infrastructure/repositories/TokenRepository.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SOL.Web/src/app/infrastructure/requests/Token/PushCheckTokenRequest.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SOL.Web/src/app/infrastructure/security/Token/JwtToken.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SOL.Web/src/app/services/ErrorService.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SOL.Web/src/app/services/GuidGenerator.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SOL.Web/src/app/services/ValidatorErrorService.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SOL.Web/src/app/store/modules/token/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SOL.Web/src/app/store/modules/token/types.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SOL.Web/src/app/usescases/User/LoginUseCase.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SOL.Web/src/app/usescases/User/RegistrationUseCase.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SOL.Web/src/assets/logo.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SOL.Web/src/components/HelloWorld.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SOL.Web/src/plugins/vuetify.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SOL.Web/src/styles/_variables.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SOL.Web/src/view/components/ErrorList/ErrorList.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SOL.Web/src/view/pages/login/index.vue" afterDir="false" />
+    <list default="true" id="923a65b1-3d87-4a69-baf9-63f51f9832cf" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/SOL.Web/src/app/application/Interfaces/IUserQueries.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SOL.Web/src/app/application/User/UserQueries.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SOL.Web/src/app/core/domain/IEntity.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SOL.Web/src/app/usescases/Token/ValidateTokenUseCase.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SOL/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SOL/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SOL.Identity/API/Controllers/UserController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SOL.Identity/API/Controllers/UserController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SOL.Identity/Application/Interfaces/IUserQueries.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SOL.Identity/Application/Interfaces/IUserQueries.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SOL.Identity/Application/User/LoginUserCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SOL.Identity/Application/User/LoginUserCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SOL.Identity/Application/User/UserQueries.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SOL.Identity/Application/User/UserQueries.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SOL.Identity/Domain/Entities/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SOL.Identity/Domain/Entities/User.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SOL.Identity/Domain/Interfaces/Repositories/IUserRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SOL.Identity/Domain/Interfaces/Repositories/IUserRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SOL.Identity/Infrastructure/Repositories/UserRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SOL.Identity/Infrastructure/Repositories/UserRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SOL.Identity/Infrastructure/Security/JwtValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SOL.Identity/Infrastructure/Security/JwtValidator.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SOL.Identity/IoC/IdentityModule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SOL.Identity/IoC/IdentityModule.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SOL.Identity/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SOL.Identity/Startup.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SOL.Web/.dockerignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SOL.Web/.eslintrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/SOL.Web/.eslintrc.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SOL.Web/.prettierrc.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SOL.Web/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/SOL.Web/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SOL.Web/SOL.Web.njsproj" beforeDir="false" afterPath="$PROJECT_DIR$/SOL.Web/SOL.Web.njsproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SOL.Web/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/SOL.Web/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SOL.Web/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/SOL.Web/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SOL.Web/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/SOL.Web/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SOL.Web/babel.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/SOL.Web/babel.config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SOL.Web/src/app/application/User/CreateUserCommandHandler.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SOL.Web/src/app/application/User/CreateUserCommandHandler.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SOL.Web/src/app/domain/commands/User/Validators/CreateUserCommandValidator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SOL.Web/src/app/domain/commands/User/Validators/CreateUserCommandValidator.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SOL.Web/src/app/domain/entities/User.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SOL.Web/src/app/domain/entities/IUser.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SOL.Web/src/app/application/User/LoginUserCommandHandler.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SOL.Web/src/app/application/User/LoginUserCommandHandler.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SOL.Web/src/app/core/api/ApiClient.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SOL.Web/src/app/core/api/ApiClient.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SOL.Web/src/app/core/api/ApiRequest.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SOL.Web/src/app/core/api/ApiRequest.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SOL.Web/src/app/domain/entities/IToken.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SOL.Web/src/app/domain/entities/IToken.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SOL.Web/src/app/domain/entities/IUser.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SOL.Web/src/app/domain/entities/IUser.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SOL.Web/src/app/domain/interfaces/repositories/IUserRepository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SOL.Web/src/app/domain/interfaces/repositories/IUserRepository.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SOL.Web/src/app/infrastructure/api/Token/Token.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SOL.Web/src/app/infrastructure/api/Token/Token.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SOL.Web/src/app/infrastructure/api/User/User.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SOL.Web/src/app/infrastructure/api/User/User.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SOL.Web/src/app/infrastructure/repositories/UserRepository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SOL.Web/src/app/infrastructure/repositories/UserRepository.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SOL.Web/src/app/infrastructure/security/Token/JwtToken.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/SOL.Web/src/app/ioc/modules.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SOL.Web/src/app/ioc/modules.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SOL.Web/src/app/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SOL.Web/src/app/router/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SOL.Web/src/app/store/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SOL.Web/src/app/store/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SOL.Web/src/app/store/modules/user/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SOL.Web/src/app/store/modules/user/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SOL.Web/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SOL.Web/src/main.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SOL.Web/src/view/components/HelloWorld.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SOL.Web/src/app/services/ErrorService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SOL.Web/src/app/services/ErrorService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SOL.Web/src/app/services/GuidGenerator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SOL.Web/src/app/services/GuidService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SOL.Web/src/app/services/ValidatorErrorService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SOL.Web/src/app/services/ValidatorErrorService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SOL.Web/src/app/usescases/User/LoginUseCase.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SOL.Web/src/app/usescases/User/LoginUseCase.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SOL.Web/src/app/usescases/User/RegistrationUseCase.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SOL.Web/src/app/usescases/User/RegistrationUseCase.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SOL.Web/src/view/components/ErrorList/ErrorList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/SOL.Web/src/view/components/ErrorList/ErrorList.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SOL.Web/src/view/containers/user/account/AccountContainer.vue" beforeDir="false" afterPath="$PROJECT_DIR$/SOL.Web/src/view/containers/user/account/AccountContainer.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SOL.Web/src/view/containers/user/login/LoginContainer.vue" beforeDir="false" afterPath="$PROJECT_DIR$/SOL.Web/src/view/containers/user/login/LoginContainer.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SOL.Web/src/view/containers/user/registration/RegistrationContainer.vue" beforeDir="false" afterPath="$PROJECT_DIR$/SOL.Web/src/view/containers/user/registration/RegistrationContainer.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SOL.Web/src/view/pages/account/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/SOL.Web/src/view/pages/account/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SOL.Web/src/view/pages/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/SOL.Web/src/view/pages/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SOL.Web/src/view/pages/registration/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/SOL.Web/src/view/pages/registration/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SOL.Web/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/SOL.Web/tsconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SOL.Web/vite.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/SOL.Web/vite.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SOL.Web/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/SOL.Web/yarn.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/launchSettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SOl.Core/Commands/Result.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SOl.Core/Commands/Result.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,6 +78,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/SOL.Web/src/app/application/Token/TokenQueries.ts" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7f7de35e7a7d4af9bcb8784fbd20813f6b600/86/d9ff97ea/IValidator`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/e22758151efc4285869ee0329b49dd789f78/3/IdentityUser.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7f7de35e7a7d4af9bcb8784fbd20813f6b600/55/ValidationResult.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="21dxUsGdfvIZghBeruuk3CGoJQC" />
@@ -231,7 +200,7 @@
       <workItem from="1638457147803" duration="26800000" />
       <workItem from="1638647586087" duration="3788000" />
       <workItem from="1638688642734" duration="9815000" />
-      <workItem from="1638813293645" duration="5409000" />
+      <workItem from="1638813293645" duration="41343000" />
     </task>
     <task id="LOCAL-00001" summary="Add vue ddd architecture and commands.">
       <created>1638286816660</created>
@@ -240,7 +209,21 @@
       <option name="project" value="LOCAL" />
       <updated>1638286816660</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Add login use case.&#10;Add JWT tokens.&#10;Add GUID generator.">
+      <created>1638828365843</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1638828365843</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Add GUID generator.">
+      <created>1638828393454</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1638828393454</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -263,52 +246,9 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Add vue ddd architecture and commands." />
     <MESSAGE value="Add login use case.&#10;Add JWT tokens." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add login use case.&#10;Add JWT tokens." />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/SOL.Identity/Application/User/LoginUserCommandHandler.cs</url>
-          <line>34</line>
-          <properties documentPath="C:\Users\Rodi\Documents\GitHub\SOL\SOL.Identity\Application\User\LoginUserCommandHandler.cs" initialLine="34" containingFunctionPresentation="method 'Handle'">
-            <startOffsets>
-              <option value="1358" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1387" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/SOL.Identity/API/Controllers/UserController.cs</url>
-          <line>77</line>
-          <properties documentPath="C:\Users\Rodi\Documents\GitHub\SOL\SOL.Identity\API\Controllers\UserController.cs" initialLine="77" containingFunctionPresentation="method 'CheckLoginUser'">
-            <startOffsets>
-              <option value="2648" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2698" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/SOL.Identity/API/Controllers/UserController.cs</url>
-          <line>78</line>
-          <properties documentPath="C:\Users\Rodi\Documents\GitHub\SOL\SOL.Identity\API\Controllers\UserController.cs" initialLine="78" containingFunctionPresentation="method 'CheckLoginUser'">
-            <startOffsets>
-              <option value="2711" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2729" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Add login use case.&#10;Add JWT tokens.&#10;Add GUID generator." />
+    <MESSAGE value="Add GUID generator." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add GUID generator." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

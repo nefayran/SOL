@@ -38,6 +38,7 @@
     <Content Include="src\app\application\Token\CheckTokenCommandHandler.ts" />
     <Content Include="src\app\application\User\CreateUserCommandHandler.ts" />
     <Content Include="src\app\application\User\LoginUserCommandHandler.ts" />
+    <Content Include="src\app\application\User\UserQueries.ts" />
     <Content Include="src\app\core\api\ApiClient.ts" />
     <Content Include="src\app\core\api\ApiError.ts" />
     <Content Include="src\app\core\api\ApiRequest.ts" />
@@ -50,6 +51,7 @@
     <Content Include="src\app\core\commands\IValidator.ts" />
     <Content Include="src\app\core\commands\Result.ts" />
     <Content Include="src\app\core\commands\validator\ValidatorBase.ts" />
+    <Content Include="src\app\core\domain\IEntity.ts" />
     <Content Include="src\app\core\repositories\IRepository.ts" />
     <Content Include="src\app\core\services\IBaseService.ts" />
     <Content Include="src\app\core\usecases\BaseUseCase.ts" />
@@ -72,13 +74,13 @@
     <Content Include="src\app\infrastructure\repositories\UserRepository.ts" />
     <Content Include="src\app\infrastructure\requests\Token\PushCheckTokenRequest.ts" />
     <Content Include="src\app\infrastructure\requests\User\PushUserRequest.ts" />
-    <Content Include="src\app\infrastructure\security\Token\JwtToken.ts" />
     <Content Include="src\app\ioc\modules.ts" />
     <Content Include="src\app\services\ErrorService.ts" />
-    <Content Include="src\app\services\GuidGenerator.ts" />
+    <Content Include="src\app\services\GuidService.ts" />
     <Content Include="src\app\services\ValidatorErrorService.ts" />
     <Content Include="src\app\store\modules\token\index.ts" />
     <Content Include="src\app\store\modules\token\types.ts" />
+    <Content Include="src\app\usescases\Token\ValidateTokenUseCase.ts" />
     <Content Include="src\app\usescases\User\LoginUseCase.ts" />
     <Content Include="src\app\usescases\User\RegistrationUseCase.ts" />
     <Content Include="src\assets\logo.png" />
@@ -124,8 +126,6 @@
     <Folder Include="src\app\domain\interfaces\repositories\" />
     <Folder Include="src\app\infrastructure\requests\" />
     <Folder Include="src\app\infrastructure\requests\User\" />
-    <Folder Include="src\app\infrastructure\security\" />
-    <Folder Include="src\app\infrastructure\security\Token\" />
     <Folder Include="src\app\ioc\" />
     <Folder Include="src\app\services\" />
     <Folder Include="src\app\store\" />
@@ -166,6 +166,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="src\app\application\Interfaces\ITokenQueries.ts" />
+    <Compile Include="src\app\application\Interfaces\IUserQueries.ts" />
     <Compile Include="src\app\application\Token\TokenQueries.ts" />
   </ItemGroup>
   <ProjectExtensions>
